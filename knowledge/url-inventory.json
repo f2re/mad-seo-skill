@@ -1,0 +1,8 @@
+[
+ {"url":"https://m.wifiobd.ru/blog","role":"article-index","verified_at":"2026-10-05","method":"sitemap + HTML главной; отдельная страница может требовать дополнительной проверки"},
+ {"url":"https://m.wifiobd.ru/blog/instruktsiia-dlia-can-dsg-controller","role":"existing-manual","verified_at":"2026-10-05","method":"sitemap + HTML главной; отдельная страница может требовать дополнительной проверки"},
+ {"url":"https://m.wifiobd.ru/blog/obnovlenie-prilozheniia-afr-wifi","role":"historical-release","verified_at":"2026-10-05","method":"sitemap + HTML главной; отдельная страница может требовать дополнительной проверки"},
+ {"url":"https://m.wifiobd.ru/blog/reliz-prilozheniia-wiobd-112","role":"historical-release","verified_at":"2026-10-05","method":"sitemap + HTML главной; отдельная страница может требовать дополнительной проверки"},
+ {"url":"https://m.wifiobd.ru/blog/novyi-format-ecu-logger-quotofflainquot-prosmotr-logov","role":"existing-instruction","verified_at":"2026-10-05","method":"sitemap + HTML главной; отдельная страница может требовать дополнительной проверки"},
+ {"url":"https://m.wifiobd.ru/blog/analogovyi-vkhod-wifi-afr-pod-liuboi-kontroller-shdk","role":"existing-instruction","verified_at":"2026-10-05","method":"sitemap + HTML главной; отдельная страница может требовать дополнительной проверки"}
+]

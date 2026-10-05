@@ -1,0 +1,10 @@
+mad.json
+content/
+analytics/
+exports/
+.mad/
+.env
+.env.*
+__pycache__/
+*.pyc
+*.sqlite3

@@ -1,0 +1,9 @@
+{
+ "checked_at":"2026-10-05",
+ "method":"Прямые HTTP GET; разбор публичного HTML и sitemap. Не аудит доступа владельца к CMS/GSC.",
+ "new_home":{"url":"https://m.wifiobd.ru","http_status":200,"body_sha256":"8f2ea2ebe8d0abd5fa2bb374c20e145e20e4491617b780034bf2403243f09597","body_contains":["каталог","товары","статьи"],"javascript_only":false},
+ "robots":{"url":"https://m.wifiobd.ru/robots.txt","http_status":200,"body_sha256":"079ff26ab654cda9159a019b7278757417cbcf0ececcf0871ce1c366a0f16023","rules":"Allow /; Disallow /admin/, /auth/, /checkout/, /profile/, /api/, /cart","sitemap":"https://m.wifiobd.ru/sitemap.xml"},
+ "sitemap":{"url":"https://m.wifiobd.ru/sitemap.xml","http_status":200,"body_sha256":"977b945fc0f2cab344faa9023d988efaabbf75f4a3f8ec88b20196f58824e11b"},
+ "cms_api":"not_verified","production_modified":false,
+ "limitations":["Не проверены все карточки товаров и все старые URL","Не проверены WAF, логи поисковых роботов и фактическое индексирование","Решение о переносе домена и перенаправлениях принимает владелец сайта"]
+}

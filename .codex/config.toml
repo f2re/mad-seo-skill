@@ -1,0 +1,34 @@
+[agents]
+max_threads = 3
+
+[agents.mad_analyst]
+description = "Отделяет измеренные изменения от редакционных гипотез."
+config_file = "agents/mad-analyst.toml"
+
+[agents.mad_art_director]
+description = "Определяет нужные снимки интерфейса и наглядные схемы."
+config_file = "agents/mad-art-director.toml"
+
+[agents.mad_editor]
+description = "Проверяет полезность, ясность и отсутствие пустого текста."
+config_file = "agents/mad-editor.toml"
+
+[agents.mad_engineer]
+description = "Сопоставляет проблему с подтверждённой возможностью MAD-auto."
+config_file = "agents/mad-engineer.toml"
+
+[agents.mad_factcheck]
+description = "Проверяет источники и связность каждого утверждения."
+config_file = "agents/mad-factcheck.toml"
+
+[agents.mad_researcher]
+description = "Ищет реальные затруднения, попытки решения и даты событий."
+config_file = "agents/mad-researcher.toml"
+
+[agents.mad_safety]
+description = "Выявляет опасные инструкции и необходимость человеческой экспертизы."
+config_file = "agents/mad-safety.toml"
+
+[agents.mad_seo]
+description = "Проверяет намерение, URL, внутренние ссылки и доступность для ИИ."
+config_file = "agents/mad-seo.toml"

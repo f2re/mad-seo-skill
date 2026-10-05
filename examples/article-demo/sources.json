@@ -1,0 +1,24 @@
+[
+  {
+    "id": "bridge",
+    "url": "https://mad-auto.ru/doc_wifi_adapters/svjaz_pk_s_ebu_po_wifi/index.html",
+    "title": "Связь ПК с ЭБУ по WiFi",
+    "kind": "official",
+    "visibility": "public",
+    "verified_at": "2026-10-05",
+    "locator": "Принцип работы; настройка COM-моста",
+    "path": "content/jobs/bridge-ports/evidence/bridge.txt",
+    "sha256": "1165e802b9f5dbefbe4613926952fe330f1e2a8a868b233d0c6a3174695ae5a1"
+  },
+  {
+    "id": "faq",
+    "url": "https://mad-auto.ru/doc_wifi_adapters/faq/index.html",
+    "title": "Вопросы и ответы",
+    "kind": "official",
+    "visibility": "public",
+    "verified_at": "2026-10-05",
+    "locator": "WiFi подключен, но нет связи в WiFi-Bridge",
+    "path": "content/jobs/bridge-ports/evidence/faq.txt",
+    "sha256": "d1fd7be19992994ef9c52f0f5b816a5c204d108b07ab39e69b27243c268884ef"
+  }
+]

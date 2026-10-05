@@ -1,0 +1,5 @@
+{
+ "note":"Искусственные числа только для проверки вычисления, не статистика MAD-auto",
+ "baseline":{"source":"synthetic","unit":"queries","scope":"one-query","days":30,"complete":true,"value":100,"start":"2026-08-02","end":"2026-08-31"},
+ "current":{"source":"synthetic","unit":"queries","scope":"one-query","days":30,"complete":true,"value":130,"start":"2026-09-01","end":"2026-09-30"}
+}

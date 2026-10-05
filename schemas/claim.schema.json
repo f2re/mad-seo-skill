@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Техническое утверждение",
+  "type": "object",
+  "required": ["id", "kind", "text", "status", "source_ids", "checked_by"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "kind": {"enum": ["capability", "procedure", "compatibility", "limitation", "measurement"]},
+    "text": {"type": "string", "minLength": 1},
+    "status": {"const": "verified"},
+    "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "checked_by": {"type": "string", "minLength": 1},
+    "scope": {"type": "object"}
+  }
+}

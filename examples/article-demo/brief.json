@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "slug": "bridge-ports",
+  "topic": "WiFi-Bridge видит адаптер, но программа не подключается: проверьте COM-пару",
+  "problem_id": "com-pair",
+  "intent": "WiFi подключён, но программа для ЭБУ не видит COM-порт",
+  "audience": "владелец устройства",
+  "problem_source_ids": ["bridge", "faq"],
+  "capability_ids": ["com-bridge"],
+  "solution_status": "documented",
+  "scope_mode": "general",
+  "scope": {"ecu": null, "ecu_software": null, "adapter": null, "adapter_firmware": null, "application": null, "application_version": null, "platform": null},
+  "limitations": [
+    "Инструкция объясняет принцип COM-моста; она не подтверждает совместимость конкретной прошивки ЭБУ.",
+    "Если сам WiFi-Bridge не видит адаптер, проверка COM-пары не заменяет диагностику сетевого подключения.",
+    "Для виртуальных портов используется законно установленное ПО. Защита компьютера целиком не отключается."
+  ],
+  "risk": "low",
+  "added_value": "Разделяет сетевое соединение, виртуальную COM-пару и выбор протокола; даёт короткую последовательность проверки без изменения ЭБУ.",
+  "seo": {"action": "new", "target_url": "https://m.wifiobd.ru/blog/bridge-ports", "existing_urls": [], "reason": ""}
+}

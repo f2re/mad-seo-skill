@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Первичное наблюдение проблемы",
+  "type": "object",
+  "required": ["id", "problem_id", "url", "occurred_at", "observed_at", "kind", "evidence", "attempted_solution", "independence_key", "public_or_redacted"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "problem_id": {"type": "string", "minLength": 1},
+    "url": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "occurred_at": {"type": ["string", "null"], "format": "date"},
+    "observed_at": {"type": "string", "format": "date"},
+    "kind": {"enum": ["forum", "support", "official-faq", "release", "search-console"]},
+    "evidence": {"type": "string", "minLength": 1},
+    "attempted_solution": {"type": "string", "minLength": 1},
+    "independence_key": {"type": "string", "minLength": 1},
+    "public_or_redacted": {"const": true}
+  }
+}

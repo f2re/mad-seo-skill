@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Закреплённый источник",
+  "type": "object",
+  "required": ["id", "url", "title", "kind", "visibility", "verified_at", "locator", "path", "sha256"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "url": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "title": {"type": "string", "minLength": 1},
+    "kind": {"enum": ["official", "forum", "expert", "analytics"]},
+    "visibility": {"const": "public"},
+    "verified_at": {"type": "string", "format": "date"},
+    "locator": {"type": "string", "minLength": 1},
+    "path": {"type": "string", "pattern": "^content/jobs/[^/]+/evidence/"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

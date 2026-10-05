@@ -1,0 +1,11 @@
+[
+ {"id":"wifi-obd2","name":"WiFi OBD2","url":"https://m.wifiobd.ru/products/wi-fi-obd2-s-vneshnei-antennoi","content_readiness":"documented","price":null,"availability":null},
+ {"id":"dashboard","name":"WiFi Dashboard","url":"https://m.wifiobd.ru/products/wi-fi-dashboard","content_readiness":"documented","price":null,"availability":null},
+ {"id":"ecu-logger","name":"WiFi ECU Logger","url":"https://m.wifiobd.ru/products/wi-fi-ecu-logger","content_readiness":"documented","price":null,"availability":null},
+ {"id":"wifi-afr","name":"WiFi AFR","url":"https://m.wifiobd.ru/products/wi-fi-afr","content_readiness":"documented","price":null,"availability":null},
+ {"id":"dsg-controller","name":"CAN DSG Controller","url":"https://m.wifiobd.ru/products/can-dsg-controller","content_readiness":"needs_detailed_sources","price":null,"availability":null},
+ {"id":"wideband-controller","name":"Wireless Lambda Controller","url":"https://m.wifiobd.ru/products/wireless-lambda-controller","content_readiness":"needs_detailed_sources","price":null,"availability":null},
+ {"id":"engineering-jan72","name":"Инженерная плата для Январь 7.2","url":"https://m.wifiobd.ru/products/инженерная-плата-для-январь-72","content_readiness":"needs_detailed_sources","price":null,"availability":null},
+ {"id":"engineering-jan51","name":"Инженерная плата для Январь 5.1","url":"https://m.wifiobd.ru/products/инженерная-плата-для-январь-51","content_readiness":"needs_detailed_sources","price":null,"availability":null},
+ {"id":"afr-indicator","name":"Индикатор AFR для контроллера ШДК","url":"https://m.wifiobd.ru/products/индикатор-afr-для-контроллера-шдк","content_readiness":"needs_detailed_sources","price":null,"availability":null}
+]

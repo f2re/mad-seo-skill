@@ -55,7 +55,9 @@ def search_plan(root):
                       'source_priority':['публичные обращения пользователей','профильные форумы','документация MAD-auto','собственные выгрузки поиска'],
                       'record':['url','occurred_at','observed_at','evidence','attempted_solution','independence_key'],
                       'existing_url':p.get('existing_url')})
-    return {'plans':plans,'search_executed':False,
+    from .market import registry
+    return {'plans':plans,'search_executed':False,'sources':list(registry(root).values()),
+            'required_before_article':'research-new → фактический поиск и чтение → research-check → plan-build → new --research',
             'instruction':'Это задания исследователю с веб-поиском, а не найденные сигналы. Откройте первоисточник; закрытый форум и сниппет не считайте прочитанными.'}
 
 

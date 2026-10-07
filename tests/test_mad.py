@@ -12,13 +12,15 @@ from pathlib import Path
 from mad import core, render, research
 from mad.cli import lock, main, knowledge_check
 from mad.install import install
+from fixtures_market import prepare_research
 
 ROOT=Path(__file__).resolve().parent.parent
 
 
 def fixture(root):
     core.init(root)
-    core.new(root,'example','Проверка COM-моста','com-pair')
+    prepare_research(root)
+    core.new(root,'example','Проверка COM-моста','com-pair','test-research')
     job=core.jobdir(root,'example')
     note=job/'note.txt';note.write_text('Искусственная заметка теста: программы должны использовать разные концы COM-пары.')
     core.source_add(root,'example','bridge','https://mad-auto.ru/doc_wifi_adapters/svjaz_pk_s_ebu_po_wifi/index.html','Документация COM-моста',note,'Настройка COM-моста','official')

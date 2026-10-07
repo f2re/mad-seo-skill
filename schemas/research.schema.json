@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Предварительное исследование рынка MAD-auto",
+  "type": "object",
+  "required": ["schema_version", "id", "checked_at", "period", "coverage", "observations", "candidates", "analysis"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "checked_at": {"type": ["string", "null"], "format": "date"},
+    "period": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "string", "format": "date"}},
+    "coverage": {"type": "array", "items": {"type": "object", "required": ["source_id", "status", "query", "checked_at", "note", "evidence"], "properties": {"source_id": {"type": "string"}, "status": {"enum": ["not_checked", "read", "metadata_only", "blocked"]}, "evidence": {"type": ["object", "null"]}}}},
+    "observations": {"type": "array", "items": {"type": "object", "required": ["id", "source_id", "url", "status", "read_at", "occurred_at", "problem_id", "problem", "attempted_solution", "outcome_status", "outcome", "independence_key", "public_or_redacted", "evidence"]}},
+    "candidates": {"type": "array", "items": {"type": "object", "required": ["problem_id", "observation_ids", "reader_value", "priority_reason", "solution_checks"]}},
+    "analysis": {"type": "object", "required": ["summary", "alternatives", "unmet_needs", "growth_assessment", "sample_limits"], "properties": {"summary": {"type": "string"}, "alternatives": {"type": "string"}, "unmet_needs": {"type": "string"}, "growth_assessment": {"type": "string"}, "sample_limits": {"type": "string"}}}
+  }
+}

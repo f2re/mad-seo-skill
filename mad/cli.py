@@ -38,6 +38,7 @@ def parser():
     sub.add_parser('search-plan')
     n = sub.add_parser('new')
     n.add_argument('slug'); n.add_argument('--problem',required=True); n.add_argument('--topic')
+    n.add_argument('--research',required=True,help='ID актуального исследования с контент-планом')
     for command in ('validate','status','review-template'):
         sub.add_parser(command).add_argument('slug')
     n=sub.add_parser('export');n.add_argument('slug');n.add_argument('--approved',action='store_true')
@@ -53,6 +54,12 @@ def parser():
     sub.add_parser('analytics-report')
     sub.add_parser('knowledge-check')
     n=sub.add_parser('install');n.add_argument('--target',type=Path,required=True);n.add_argument('--dry-run',action='store_true')
+    sub.add_parser('sources',help='Сообщества и авторы: реестр, не выполненный поиск')
+    n=sub.add_parser('research-new');n.add_argument('run');n.add_argument('--days',type=int,default=30)
+    for command in ('research-check','plan-build'):
+        sub.add_parser(command).add_argument('run')
+    n=sub.add_parser('research-evidence');n.add_argument('run');n.add_argument('--key',required=True);n.add_argument('--file',type=Path,required=True)
+    n=sub.add_parser('research-link');n.add_argument('slug');n.add_argument('--research',required=True)
     return p
 
 
@@ -70,7 +77,10 @@ def knowledge_check(root):
     for problem in problems:
         if not problem.get('capability_ids') or set(problem['capability_ids'])-cids:
             raise core.MadError('Проблема без поддерживаемого решения')
+    from .market import registry
+    communities = registry(root)
     return {'ok':True,'sources':len(sources),'capabilities':len(caps),'problems':len(problems),
+            'community_sources':len(communities),
             'open_conflicts':len([c for c in core.knowledge(root,'conflicts.json') if c['status']=='open'])}
 
 
@@ -85,9 +95,12 @@ def dispatch(args):
         return {'version':core.VERSION,'python':sys.version.split()[0],
             'initialized':core.safe(root,'mad.json').exists(), 'network_called':False,
             'model_called':False, 'cms_api':'not_connected',
-            'next_step':'python mad.py init' if not core.safe(root,'mad.json').exists() else 'python mad.py search-plan',
+            'next_step':'python mad.py init' if not core.safe(root,'mad.json').exists() else 'python mad.py sources; python mad.py research-new first-research',
             'note':'Наличие адаптеров не доказывает запуск субагентов или авторизацию внешних сервисов.'}
     core.config(root)
+    from . import market
+    if cmd=='sources': return {'sources':list(market.registry(root).values()),'search_executed':False}
+    if cmd=='research-check': return market.check(root,args.run)
     if cmd=='search-plan': return research.search_plan(root)
     if cmd=='knowledge-check': return knowledge_check(root)
     if cmd=='topics': return research.rank(root,args.as_of,args.days)
@@ -108,8 +121,12 @@ def dispatch(args):
                 pass
         return result
     with lock(root):
+        if cmd=='research-new': return market.start(root,args.run,args.days)
+        if cmd=='research-evidence': return market.add_evidence(root,args.run,args.key,args.file)
+        if cmd=='research-link': return market.link_job(root,args.slug,args.research)
+        if cmd=='plan-build': return market.build_plan(root,args.run)
         if cmd=='new':
-            return core.new(root,args.slug,args.topic or next((p['question'] for p in core.knowledge(root,'problems.json') if p['id']==args.problem),args.problem),args.problem)
+            return core.new(root,args.slug,args.topic or next((p['question'] for p in core.knowledge(root,'problems.json') if p['id']==args.problem),args.problem),args.problem,args.research)
         if cmd=='source-add': return core.source_add(root,args.slug,args.id,args.url,args.title,args.file,args.locator,args.kind)
         if cmd=='review-template': return core.review_template(root,args.slug)
         if cmd=='approve': return core.approve(root,args.slug,args.confirm)

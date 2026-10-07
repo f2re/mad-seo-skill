@@ -12,7 +12,7 @@ from urllib.parse import parse_qsl, urlsplit
 
 ENGINE = Path(__file__).resolve().parent.parent
 CHECKS = ('facts', 'compatibility', 'safety', 'usefulness', 'voice', 'seo', 'privacy', 'visuals')
-VERSION = '1.0.0'
+VERSION = '1.1.0'
 
 
 def utcnow():
@@ -131,7 +131,9 @@ def jobdir(root, name):
     return safe(root, 'content/jobs/' + ident(name))
 
 
-def new(root, name, topic, problem_id):
+def new(root, name, topic, problem_id, research_id=None):
+    from .market import require_plan
+    plan, selected = require_plan(root, research_id, problem_id)
     cfg = config(root)
     ident(name)
     problems = {p['id']: p for p in knowledge(root, 'problems.json')}
@@ -145,10 +147,11 @@ def new(root, name, topic, problem_id):
     target = existing or cfg['site_url'].rstrip('/') + cfg['article_path'] + name
     save(job / 'brief.json', {'schema_version': 1, 'slug': name, 'topic': topic, 'problem_id': problem_id,
         'intent': problem['question'], 'audience': 'владелец устройства',
+        'market_research': {'id': research_id, 'hash': plan['research_hash']},
         'problem_source_ids': [], 'capability_ids': problem['capability_ids'],
         'solution_status': 'documented', 'scope_mode': 'general',
         'scope': {k: None for k in ('ecu', 'ecu_software', 'adapter', 'adapter_firmware', 'application', 'application_version', 'platform')},
-        'limitations': [], 'risk': 'low', 'added_value': '',
+        'limitations': list(selected['limitations']), 'risk': 'low', 'added_value': selected['reader_value'],
         'seo': {'action': 'update' if existing else 'new', 'target_url': target,
                 'existing_urls': [existing] if existing else [], 'reason': ''}})
     save(job / 'sources.json', [])
@@ -170,6 +173,11 @@ def snapshot(root, name):
     for visual in load(job / 'pack.json').get('visuals', []):
         files.append(safe(root, visual['path']))
     hashes = {str(p.relative_to(Path(root).resolve())): sha(p) for p in files}
+    market = load(job / 'brief.json').get('market_research')
+    if market:
+        from .market import fingerprint
+        hashes['market/research'] = fingerprint(root, market['id'])
+        hashes['market/plan'] = sha(safe(root, 'content/plans/' + ident(market['id']) + '.json'))
     for folder in ('mad', 'agents', 'skills', 'docs', 'knowledge', 'schemas'):
         base = ENGINE / folder
         for path in sorted(base.rglob('*')):
@@ -371,6 +379,8 @@ def validate(root, name):
                 fail('technical_review', 'Нужна актуальная проверка инженером для опасной операции или собственного испытания')
     except (MadError, KeyError, TypeError, ValueError, AttributeError, OSError) as exc:
         fail('invalid', str(exc) if isinstance(exc, MadError) else 'Неполная структура или отсутствующий файл')
+    from .market import validate_job
+    errors.extend(validate_job(root, name))
     return {'ok': not errors, 'errors': errors, 'warnings': warnings,
             'note': 'Это проверка структуры и ограниченных эвристик, не доказательство истинности и не определитель авторства ИИ.'}
 
